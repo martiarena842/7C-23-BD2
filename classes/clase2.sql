@@ -22,14 +22,12 @@ VALUES
   ('ROBERTO', 'De Niro'),
   ('LEO', 'DICAPRIO');
 
--- Insert some films
 INSERT INTO film (nombre, description, release_year)
 VALUES
   ('Forrest Gump', 'mejor pelicula, un chico con poco iq es bueno en todo lo que hace', 1994),
   ('el padrino', 'Un padrino no se hace cargo del sobrino', 1972),
   ('toy stori', 'Un juguete revive y esta vivo', 2015);
 
--- Insert some film_actor relationships
 INSERT INTO film_actor (actor_id, film_id)
 VALUES
   (1, 1),
