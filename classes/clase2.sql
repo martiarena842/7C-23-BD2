@@ -26,8 +26,8 @@ VALUES
 INSERT INTO film (nombre, description, release_year)
 VALUES
   ('Forrest Gump', 'mejor pelicula, un chico con poco iq es bueno en todo lo que hace', 1994),
-  ('The Godfather', 'Un padrino no se hace cargo del sobrino', 1972),
-  ('The Irishman', 'Un irlandes cara triste mata a la mafia', 2019);
+  ('el padrino', 'Un padrino no se hace cargo del sobrino', 1972),
+  ('toy stori', 'Un juguete revive y esta vivo', 2015);
 
 -- Insert some film_actor relationships
 INSERT INTO film_actor (actor_id, film_id)
