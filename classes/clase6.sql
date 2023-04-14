@@ -23,25 +23,25 @@ WHERE NOT EXISTS (
 
 
 #EJERCICIO 3 Find customers that rented only one film
-select CONCAT (c.first_name,' ',c.last_name)as nombre_completo
-from customer as c
-where not exists (
-  select *
-  from rental r
-  where customer_id=r.customer_id)
+SELECT c1.first_name, c1.last_name FROM customer c1
+WHERE (SELECT count(*) FROM rental r WHERE c1.customer_id = r.customer_id)=1;
+
+
+#EJERCICIO4  Find customers that rented more than one film
+SELECT c.first_name, c.last_name FROM customer c
+WHERE (SELECT count(*) FROM rental r WHERE c.customer_id = r.customer_id)>1;
+
+
+#EJ5 List the actors that acted in 'BETRAYED REAR' or in 'CATCH AMISTAD'
+SELECT a.first_name, a.last_name
+FROM actor as a
+WHERE a.actor_id IN (
+    SELECT fa.actor_id
+    FROM film_actor as fa
+    WHERE fa.film_id IN (
+        SELECT f.film_id
+        FROM film as f
+        WHERE f.title IN ('BETRAYED REAR', 'CATCH AMISTAD')
+    )
+)
 ;
-select c.first_name,c.last_name 
-from customer as c
-where EXISTS
-;
-
-
-#EJERCICIO4  
-SELECT concat(c.first_name, ' ', c.last_name) as full_name
-FROM customer c
-WHERE NOT EXISTS    (SELECT *
-                    FROM rental r
-                    WHERE c.customer_id = r.customer_id
-);
-
-
