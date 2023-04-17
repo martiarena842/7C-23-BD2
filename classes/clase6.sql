@@ -45,3 +45,34 @@ WHERE a.actor_id IN (
     )
 )
 ;
+
+#EJ6 List the actors that acted in 'BETRAYED REAR' but not in 'CATCH AMISTAD'
+
+SELECT a.first_name, a.last_name 
+FROM actor as a
+WHERE EXISTS 
+(SELECT * FROM film f JOIN film_actor fa on f.film_id = fa.film_id
+WHERE f.film_id = fa.film_id AND a.actor_id = fa.actor_id AND 
+(f.title = 'BETRAYED REAR' AND  f.title != 'CATCH AMISTAD'));
+
+#EJ7 List the actors that acted in both 'BETRAYED REAR' and 'CATCH AMISTAD'
+
+SELECT concat(a.first_name, ' ', a.last_name) as nombre_completo
+FROM actor as a
+WHERE EXISTS    (SELECT *
+FROM film f JOIN film_actor fm on f.film_id = fm.film_id
+WHERE f.film_id = fm.film_id
+AND a.actor_id = fm.actor_id
+AND (f.title = 'BETRAYED REAR' AND f.title = 'CATCH AMISTAD')
+);
+#EJ8 List the actors that acted in both 'BETRAYED REAR' and 'CATCH AMISTAD'
+SELECT a.first_name, a.last_name,a.actor_id
+FROM actor  a
+WHERE NOT EXISTS (
+  SELECT *
+  FROM film as f 
+  JOIN film_actor fa ON f.film_id = fa.film_id
+  WHERE fa.actor_id = a.actor_id 
+  AND (f.title = 'BETRAYED REAR' OR f.title = 'CATCH AMISTAD')
+);
+
