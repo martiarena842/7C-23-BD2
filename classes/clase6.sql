@@ -27,6 +27,7 @@ SELECT c1.first_name, c1.last_name FROM customer c1
 WHERE (SELECT count(*) FROM rental r WHERE c1.customer_id = r.customer_id)=1;
 
 
+
 #EJERCICIO4  Find customers that rented more than one film
 SELECT c.first_name, c.last_name FROM customer c
 WHERE (SELECT count(*) FROM rental r WHERE c.customer_id = r.customer_id)>1;
@@ -57,14 +58,16 @@ WHERE f.film_id = fa.film_id AND a.actor_id = fa.actor_id AND
 
 #EJ7 List the actors that acted in both 'BETRAYED REAR' and 'CATCH AMISTAD'
 
-SELECT concat(a.first_name, ' ', a.last_name) as nombre_completo
-FROM actor as a
-WHERE EXISTS    (SELECT *
-FROM film f JOIN film_actor fm on f.film_id = fm.film_id
-WHERE f.film_id = fm.film_id
-AND a.actor_id = fm.actor_id
-AND (f.title = 'BETRAYED REAR' AND f.title = 'CATCH AMISTAD')
-);
+
+SELECT CONCAT(a.first_name,' ',a.last_name) as nombre_completo
+FROM actor a
+WHERE EXISTS (SELECT * FROM film f JOIN film_actor fa ON f.film_id = fa.film_id 
+WHERE fa.actor_id = a.actor_id AND f.title = 'BETRAYED REAR')
+AND EXISTS (SELECT * FROM film f JOIN film_actor fa ON f.film_id = fa.film_id 
+WHERE fa.actor_id = a.actor_id AND f.title = 'CATCH AMISTAD');
+
+
+
 #EJ8 List the actors that acted in both 'BETRAYED REAR' and 'CATCH AMISTAD'
 SELECT a.first_name, a.last_name,a.actor_id
 FROM actor  a
