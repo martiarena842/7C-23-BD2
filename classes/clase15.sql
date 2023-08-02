@@ -82,14 +82,19 @@ Si bien las vistas pueden ser útiles para mejorar el rendimiento de ciertas con
 debido a que estas ocupan mucho espacio en el disco y necesitan mantenerse actualizadas para reflejar los datos lo que puede requerir recursos adicionales
 
 algunas alternativas puden ser:
+-Caché: El uso de un mecanismo de cache en memoria también puede ayudar a mejorar el rendimiento de las consultas para datos accedidos con frecuencia.
 -Vistas regulares: Las vistas regulares proporcionan una representación virtual de los datos y no almacenan datos reales. Son utlies para simplificar consultas complejas y 
 proporcionar un mayor nivel de abstracción, pero pueden no mejorar el rendimiento de las consultas como lo hacen las vistas materializadas.
--Caché: El uso de un mecanismo de cache en memoria también puede ayudar a mejorar el rendimiento de las consultas para datos accedidos con frecuencia.
+Data Warehousing: En entornos donde la optimización del rendimiento de las consultas es crucial, se puede utilizar una arquitectura de Data Warehousing.
+ En un Data Warehouse, los datos se transforman, agregan y almacenan de manera precalculada en estructuras optimizadas para la generación de informes y análisis.
 
 
 Las vistas materializadas son compatibles con varios sistemas de gestión de bases de datos relacionales (RDBMS o DBMS):
 
 Oracle Database: Oracle proporciona Vistas Materializadas como una característica nativa para mejorar el rendimiento de las consultas.
 PostgreSQL: PostgreSQL admite Vistas Materializadas a través de la instrucción "CREATE MATERIALIZED VIEW".
-Microsoft SQL Server: SQL Server ofrece Vistas Indexadas, que son similares a las vistas materializadas en otras bases de datos.
+MySQL: Aunque MySQL no tiene soporte nativo para vistas materializadas, se pueden simular utilizando procedimientos almacenados y tablas temporales para almacenar los resultados precalculados. 
+Sin embargo, es importante tener en cuenta que esta solución puede no ser tan eficiente como las vistas materializadas nativas en otros DBMS.
+SQLite: Aunque SQLite es un DBMS ligero y no admite vistas materializadas de forma nativa, 
+se pueden implementar mediante el uso de tablas temporales y consultas SELECT para almacenar resultados precalculados.
 */
