@@ -12,9 +12,13 @@ Esto lo hice en la consola y con esto pude iniciar sesion como el user de data_a
 CREATE TABLE datanalyst(
     id int PRIMARY KEY 
 );  
+<<<<<<< Updated upstream
 /*
 4
 */
+=======
+
+>>>>>>> Stashed changes
 update film
 set title="Forest Gump"
 where film_id=23
